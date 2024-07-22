@@ -6,6 +6,16 @@
 
 {% block content %}
     <h1 class="title">
-        Personas
+        {{titulo}}
     </h1>
-{% endblock %} 
+    {% if form.errors %}
+        <strong class="rojo">    
+            Hay errores en el Formulario
+        </strong>
+    {% endif %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Agregar" />
+    </form>
+{% endblock %}
