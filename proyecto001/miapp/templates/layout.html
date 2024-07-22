@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title  %}
+            {% endblock %}
+            | BRAVO
+        </title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    </head>
+    <body>
+        <header>
+            <div id="logotipo">
+                <img src="{% static 'images/LOGOUNTELS.png' %}" />
+                <h1>FINAL</h1>
+            </div>
+        </header>
+        <nav>
+            <ul>
+                 <li>
+                    <a href="{% url 'personas' %}">Personas</a>
+                 </li>
+            </ul>
+        </nav>
+
+        <div class="barra">
+            <span class="esquina-izquierda"></span>
+            <span class="relleno-barra"></span>
+            <span class="esquina-derecha"></span>
+        </div>
+        <div id="content">
+            <div class="box">
+                {% block content %}
+                    {% if mensaje %}
+                        <p> {{mensaje}} </p>
+                        <ul>
+                            {% for estudiante in  estudiantes %}
+                                <li>{{forloop.counter}}. {{estudiante}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <strong>El Mensaje no tiene contenido</strong>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+        <footer>
+            FINAL - Lenguaje de Programación III &copy;BRAVO - {% now "d/m/Y h:m:s" %}
+        </footer>
+    </body>
+</html> 
